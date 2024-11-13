@@ -1,0 +1,50 @@
+---
+title: "My first slides"
+author: "JacklynLin"
+format: revealjs
+editor: visual
+execute:
+  echo: true
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+---
+
+##loading data
+we will load the dataset gapminder included in the R package gapminder
+
+```{r}
+library(gapminder)
+gapminder
+```
+
+---
+
+##Preprocess data
+We will filter just data from 2007
+
+```{r}
+library(dplyr)
+gapminder_2007 <-
+  gapminder |> 
+  filter(year == 2007)
+```
+
+---
+##plot the data
+```{r}
+library(ggplot2)
+ggplot(gapminder_2007) +
+  geom_point(aes(x = lifeExp, y = gdpPercap,
+                 color = continent)) +
+  ggthemes::scale_color_colorblind() +
+  theme_minimal()
+```
+
+
